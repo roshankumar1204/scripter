@@ -1,4 +1,4 @@
-# Demo Script Builder
+# scripter Builder
 
 A pipeline that turns a customer's public documentation into a structured,
 human-reviewed demo script — the kind of script a live sales-demo agent
