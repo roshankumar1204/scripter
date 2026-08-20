@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Page {
+  id          String   @id @default(cuid())
+  sourceUrl   String
+  rawMarkdown String
+  createdAt   DateTime @default(now())
+  beats       Beat[]
+}
+
+model Beat {
+  id                  String   @id @default(cuid())
+  pageId              String
+  page                Page     @relation(fields: [pageId], references: [id])
+  sourceSnippet       String
+  title               String
+  narration           String
+  uiActionType        String
+  uiActionTarget      String
+  uiActionFallback    String
+  anticipatedQuestions String  // JSON string
+  status              String   @default("draft") // draft | reviewed | approved | rejected
+  confidence          String   @default("medium") // high | medium | low
+  unsupportedClaims   String   @default("[]") // JSON string
+  sourceWordCount     Int
+  editedByHuman        Boolean  @default(false)
+  order               Int
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+}
