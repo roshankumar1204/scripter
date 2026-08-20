@@ -27,12 +27,12 @@ export async function crawlDocSite(startUrl: string, limit = 20): Promise<Scrape
 }
 
 export async function scrapeSingleUrl(url: string): Promise<ScrapedPage> {
-  const result = await firecrawl.scrapeUrl(url, {
+  const result: any = await firecrawl.scrapeUrl(url, {
     formats: ['markdown'],
     onlyMainContent: true,
   });
 
-  if (!result.success) {
+  if (!result?.markdown) {
     throw new Error(`Firecrawl scrape failed: ${JSON.stringify(result)}`);
   }
 
