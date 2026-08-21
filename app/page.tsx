@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 export default function HomePage() {
   const [url, setUrl] = useState('');
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(3);
   const [status, setStatus] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
